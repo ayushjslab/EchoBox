@@ -12,7 +12,7 @@
 
     // Floating Button
     var btn = document.createElement("button");
-    btn.innerHTML = "💬 <span>Feedback</span>";
+    btn.innerHTML = "💬";
     Object.assign(btn.style, {
       position: "fixed",
       bottom: "30px",
@@ -21,9 +21,9 @@
       background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       color: "#fff",
       border: "none",
-      borderRadius: "50px",
-      padding: "14px 24px",
-      fontSize: "16px",
+      borderRadius: "15px",
+      padding: "10px",
+      fontSize: "20px",
       fontWeight: "600",
       cursor: "pointer",
       boxShadow: "0 8px 20px rgba(102, 126, 234, 0.4)",
@@ -63,40 +63,41 @@
       animation: "slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
     });
 
-    modal.innerHTML = `
-      <div style="padding: 30px;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;">
-          <h3 style="margin:0;font-size:24px;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">Feedback</h3>
-          <button id="closeBtn" style="background:none;border:none;font-size:24px;cursor:pointer;color:#999;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all 0.3s ease;">&times;</button>
-        </div>
-        <form id="feedbackForm" style="display:flex;flex-direction:column;gap:16px; color:#000;">
-          <div style="display:flex;flex-direction:column;gap:6px;">
-            <label style="font-size:13px;font-weight:500;color:#333;">Full Name</label>
-            <input type="text" placeholder="Ayush Saini" id="name" required style="padding:12px 16px;border-radius:10px;border:2px solid #e5e7eb;font-size:14px;transition:all 0.3s ease;font-family:inherit;background:#fff;" />
-          </div>
-          <div style="display:flex;flex-direction:column;gap:6px;">
-            <label style="font-size:13px;font-weight:500;color:#333;">Email Address</label>
-            <input type="email" placeholder="you@example.com" id="email" required style="padding:12px 16px;border-radius:10px;border:2px solid #e5e7eb;font-size:14px;transition:all 0.3s ease;font-family:inherit;background:#fff;" />
-          </div>
-          <div style="display:flex;flex-direction:column;gap:6px;">
-            <label style="font-size:13px;font-weight:500;color:#333;">Your Feedback</label>
-            <textarea placeholder="Tell us what you think..." id="text" rows="3" required style="padding:12px 16px;border-radius:10px;border:2px solid #e5e7eb;font-size:14px;transition:all 0.3s ease;resize:vertical;min-height:80px;font-family:inherit;background:#fff;"></textarea>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:6px;">
-            <label style="font-size:13px;font-weight:500;color:#333;text-align:center;">Rate Your Experience</label>
-            <div id="stars" style="display:flex;justify-content:center;gap:8px;padding:8px 0;">
-              <span class="star" data-value="1" style="font-size:32px;cursor:pointer;color:#ddd;transition:all 0.2s ease;user-select:none;">★</span>
-              <span class="star" data-value="2" style="font-size:32px;cursor:pointer;color:#ddd;transition:all 0.2s ease;user-select:none;">★</span>
-              <span class="star" data-value="3" style="font-size:32px;cursor:pointer;color:#ddd;transition:all 0.2s ease;user-select:none;">★</span>
-              <span class="star" data-value="4" style="font-size:32px;cursor:pointer;color:#ddd;transition:all 0.2s ease;user-select:none;">★</span>
-              <span class="star" data-value="5" style="font-size:32px;cursor:pointer;color:#ddd;transition:all 0.2s ease;user-select:none;">★</span>
-            </div>
-            <input type="hidden" id="rating" value="0" />
-          </div>
-          <button type="submit" style="background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);color:#fff;padding:14px;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:600;transition:all 0.3s ease;margin-top:6px;box-shadow:0 4px 15px rgba(102, 126, 234, 0.4);">Send Feedback</button>
-        </form>
+   modal.innerHTML = `
+  <div style="padding:24px;max-width:400px;background:#fff;border-radius:16px;box-shadow:0 20px 40px rgba(0,0,0,0.15);font-family:'Inter',sans-serif;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <h3 style="margin:0;font-size:22px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">Feedback</h3>
+      <button id="closeBtn" style="background:none;border:none;font-size:24px;cursor:pointer;color:#999;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all 0.3s ease;">&times;</button>
+    </div>
+    <form id="feedbackForm" style="display:flex;flex-direction:column;gap:12px;color:#000;">
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <label style="font-size:12px;font-weight:500;color:#444;">Full Name</label>
+        <input type="text" placeholder="Ayush Saini" id="name" required style="padding:10px 14px;border-radius:12px;border:1.5px solid #e5e7eb;font-size:14px;transition:all 0.3s ease;font-family:inherit;background:#fefefe;outline:none;" />
       </div>
-    `;
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <label style="font-size:12px;font-weight:500;color:#444;">Email Address</label>
+        <input type="email" placeholder="you@example.com" id="email" required style="padding:10px 14px;border-radius:12px;border:1.5px solid #e5e7eb;font-size:14px;transition:all 0.3s ease;font-family:inherit;background:#fefefe;outline:none;" />
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <label style="font-size:12px;font-weight:500;color:#444;">Your Feedback</label>
+        <textarea placeholder="Tell us what you think..." id="text" rows="3" required style="padding:10px 14px;border-radius:12px;border:1.5px solid #e5e7eb;font-size:14px;transition:all 0.3s ease;resize:vertical;min-height:70px;font-family:inherit;background:#fefefe;outline:none;"></textarea>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <label style="font-size:12px;font-weight:500;color:#444;text-align:center;">Rate Your Experience</label>
+        <div id="stars" style="display:flex;justify-content:center;gap:6px;padding:6px 0;">
+          <span class="star" data-value="1" style="font-size:28px;cursor:pointer;color:#ddd;transition:all 0.2s ease;user-select:none;">★</span>
+          <span class="star" data-value="2" style="font-size:28px;cursor:pointer;color:#ddd;transition:all 0.2s ease;user-select:none;">★</span>
+          <span class="star" data-value="3" style="font-size:28px;cursor:pointer;color:#ddd;transition:all 0.2s ease;user-select:none;">★</span>
+          <span class="star" data-value="4" style="font-size:28px;cursor:pointer;color:#ddd;transition:all 0.2s ease;user-select:none;">★</span>
+          <span class="star" data-value="5" style="font-size:28px;cursor:pointer;color:#ddd;transition:all 0.2s ease;user-select:none;">★</span>
+        </div>
+        <input type="hidden" id="rating" value="0" />
+      </div>
+      <button type="submit" style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:12px;border:none;border-radius:12px;cursor:pointer;font-size:14px;font-weight:600;transition:all 0.3s ease;box-shadow:0 6px 18px rgba(102,126,234,0.35);margin-top:4px;">Send Feedback</button>
+    </form>
+  </div>
+`;
+
 
     document.body.appendChild(modal);
 

@@ -46,7 +46,11 @@ export default function Sidebar() {
             </h1>
           </div>
           <div className="flex-shrink-0 text-emerald-600 cursor-pointer hover:text-emerald-700 transition-colors">
-            {isOpen ? <X size={26} /> : <Menu size={26} />}
+            {!isOpen && (
+              <div className="w-8 h-8 bg-gradient-to-br mr-4 from-emerald-400 to-emerald-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">EM</span>
+              </div>
+            )}
           </div>
         </div>
 

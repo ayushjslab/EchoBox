@@ -1,3 +1,4 @@
+"use client"
 import {
   ArrowRight,
   MessageCircle,
@@ -7,8 +8,45 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 export default function Home() {
+
+
+const googleLogin = useGoogleLogin({
+  onSuccess: async (tokenResponse) => {
+    try {
+      console.log("Google Token Response:", tokenResponse);
+
+      const userInfo = await axios.get(
+        "https://www.googleapis.com/oauth2/v3/userinfo",
+        {
+          headers: {
+            Authorization: `Bearer ${tokenResponse.access_token}`,
+          },
+        }
+      );
+
+      if(userInfo.data){
+        const { data } = await axios.post(`http://localhost:3001/api/user`,{
+          name: userInfo.data.name,
+          email: userInfo.data.email,
+          picture: userInfo.data.picture
+        });
+        console.log(data)
+      }
+
+      console.log("Google User Info:", userInfo.data);
+    } catch (error) {
+      console.error("Error fetching user info:", error);
+    }
+  },
+  onError: (errorResponse) => {
+    console.error("Login Failed:", errorResponse);
+  },
+});
+
   return (
     <main className="min-h-screen bg-background">
       {/* Navigation */}
@@ -36,11 +74,11 @@ export default function Home() {
             </a>
           </div>
           <div className="flex gap-3">
-            <Button variant="ghost" asChild>
-              <Link href="/login">Log in</Link>
+            <Button variant="ghost" onClick={() => googleLogin()}>
+              Log in
             </Button>
-            <Button asChild>
-              <Link href="/signup">Get Started</Link>
+            <Button>
+              Get Started
             </Button>
           </div>
         </div>

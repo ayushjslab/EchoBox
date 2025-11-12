@@ -1,34 +1,59 @@
+import Feedback from "@/models/feedback.model";
 import { NextRequest, NextResponse } from "next/server";
+import { connectToDB } from "@/lib/connectDB";
 
-// Handle POST requests
 export async function POST(req: NextRequest) {
-  const data = await req.json();
+  try {
+    await connectToDB();
 
-  // TODO: Save data to database here
-  console.log("Feedback received:", data);
+    const data = await req.json();
+    const { name, email, text, rating, siteId } = data;
 
-  return NextResponse.json(
-    { success: true },
-    {
-      headers: {
-        "Access-Control-Allow-Origin": "*", 
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
+    if (!name || !email || !text || !rating || !siteId) {
+      return NextResponse.json(
+        { success: false, message: "All fields are required" },
+        { status: 400 }
+      );
     }
-  );
+
+    const newFeedback = await Feedback.create({
+      name,
+      email,
+      description: text,
+      rating,
+      website: siteId,
+    });
+
+    console.log("Feedback received:", newFeedback);
+
+    return NextResponse.json(
+      { success: true, data: newFeedback, message: "Feedback submitted successfully" },
+      {
+        status: 201,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+        },
+      }
+    );
+  } catch (error) {
+    console.error("Error saving feedback:", error);
+    return NextResponse.json(
+      { success: false, message: "Server error" },
+      { status: 500 }
+    );
+  }
 }
 
-
+// Handle preflight OPTIONS requests
 export async function OPTIONS() {
-  return NextResponse.json(
-    {},
-    {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
-    }
-  );
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    },
+  });
 }

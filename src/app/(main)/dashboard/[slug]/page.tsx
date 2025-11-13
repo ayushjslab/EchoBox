@@ -4,6 +4,8 @@ import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { useAuth } from "@/hooks/useAuth";
 import ProfilePage from "@/components/custom/profile";
+import { FeedbackAnalytics } from "@/components/custom/feedback-analytics";
+import AddedWebsites from "@/components/custom/added-websites";
 
 const AddWebsite = dynamic(() => import("@/components/custom/add-website"));
 
@@ -20,6 +22,8 @@ export default function DashboardPageClient() {
         return <AddWebsite userId={user?.id || null} />;
       case "profile":
         return <ProfilePage />;
+        case  "analysis":
+            return <AddedWebsites/>
       default:
         return <p>Page not found</p>;
     }

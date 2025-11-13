@@ -53,7 +53,7 @@ export default function Sidebar() {
           {menuItems.map((item) => {
             const Icon = item.icon;
             const href = `/dashboard/${item.slug}`;
-            const isActive = pathName === href; // check activeness
+            const isActive = pathName.includes(href);
 
             return (
               <Link

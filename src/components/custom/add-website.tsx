@@ -1,12 +1,19 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Copy, Check, Zap, Code, CheckCircle, ArrowRight, Loader2 } from "lucide-react";
+import {
+  Copy,
+  Check,
+  Zap,
+  Code,
+  CheckCircle,
+  ArrowRight,
+  Loader2,
+} from "lucide-react";
 import axios from "axios";
 import { toast } from "sonner";
 
-
-export default function AddWebsitePage({userId}: {userId: string | null}) {
+export default function AddWebsitePage({ userId }: { userId: string | null }) {
   const [step, setStep] = useState(1);
   const [siteName, setSiteName] = useState("");
   const [siteUrl, setSiteUrl] = useState("");
@@ -15,41 +22,40 @@ export default function AddWebsitePage({userId}: {userId: string | null}) {
   const scriptRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(false);
 
- const handleGenerate = async () => {
-  console.log(userId)
-   if (!siteName || !siteUrl || !userId) {
-     toast.error("Please fill all fields and make sure you are logged in.");
-     return;
-   }
+  const handleGenerate = async () => {
+    console.log(userId);
+    if (!siteName || !siteUrl || !userId) {
+      toast.error("Please fill all fields and make sure you are logged in.");
+      return;
+    }
 
-   try {
-     setLoading(true);
-     const { data } = await axios.post("/api/website/add", {
-       name: siteName,
-       url: siteUrl,
-       userId,
-     });
+    try {
+      setLoading(true);
+      const { data } = await axios.post("/api/website/add", {
+        name: siteName,
+        url: siteUrl,
+        userId,
+      });
 
-     if (data.success) {
-       toast.success(data.message || "Website added successfully!");
-     } else {
-       toast.error(data.message || "Failed to add website.");
-     }
+      if (data.success) {
+        toast.success(data.message || "Website added successfully!");
+      } else {
+        toast.error(data.message || "Failed to add website.");
+      }
 
-     const newSiteId = data.data._id;
+      const newSiteId = data.data._id;
 
-     const script = `<script src="https://echomark.vercel.app/widget.js?siteId=${newSiteId}"></script>`;
-     setGeneratedScript(script);
+      const script = `<script src="https://echomark.vercel.app/widget.js?siteId=${newSiteId}"  strategy="afterInteractive"></script>`;
+      setGeneratedScript(script);
 
-     setStep(2);
-   } catch (err) {
-     console.error(err);
-     toast.error("Something went wrong. Please try again.");
-   } finally {
-     setLoading(false); // stop loading
-   }
- };
-
+      setStep(2);
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false); // stop loading
+    }
+  };
 
   const handleCopy = async () => {
     if (!generatedScript) return;
@@ -72,7 +78,6 @@ export default function AddWebsitePage({userId}: {userId: string | null}) {
 
   return (
     <div className="min-h-screen bg-linear-to-b from-white via-emerald-50 to-white">
-
       <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-start mt-16">
         <div className="space-y-8">
           <div className="flex items-center gap-2">
@@ -148,10 +153,7 @@ export default function AddWebsitePage({userId}: {userId: string | null}) {
           {step === 1 && (
             <div className="grid gap-4">
               <div className="flex gap-4 p-4 bg-emerald-50 rounded-xl border border-emerald-200">
-                <Code
-                  size={20}
-                  className="text-emerald-600 shrink-0 mt-1"
-                />
+                <Code size={20} className="text-emerald-600 shrink-0 mt-1" />
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-1">
                     Easy Integration
@@ -163,10 +165,7 @@ export default function AddWebsitePage({userId}: {userId: string | null}) {
                 </div>
               </div>
               <div className="flex gap-4 p-4 bg-emerald-50 rounded-xl border border-emerald-200">
-                <Zap
-                  size={20}
-                  className="text-emerald-600 shrink-0 mt-1"
-                />
+                <Zap size={20} className="text-emerald-600 shrink-0 mt-1" />
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-1">
                     Instant Analytics

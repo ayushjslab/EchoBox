@@ -35,7 +35,7 @@ export default function LoginPage() {
         );
 
         if (userInfo.data) {
-          const { data } = await axios.post(`http://localhost:3001/api/user`, {
+          const { data } = await axios.post(`${process.env.NEXT_PUBLIC_WEBSITE_URI}/api/user`, {
             name: userInfo.data.name,
             email: userInfo.data.email,
             picture: userInfo.data.picture,

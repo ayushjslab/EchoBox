@@ -2,17 +2,26 @@ import Feedback from "@/models/feedback.model";
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDB } from "@/lib/connectDB";
 
+const cors = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
+export async function OPTIONS() {
+  return new Response(null, { status: 204, headers: cors });
+}
+
 export async function POST(req: NextRequest) {
   try {
     await connectToDB();
 
-    const data = await req.json();
-    const { name, email, text, rating, siteId } = data;
+    const { name, email, text, rating, siteId } = await req.json();
 
     if (!name || !email || !text || !rating || !siteId) {
       return NextResponse.json(
-        { success: false, message: "All fields are required" },
-        { status: 400 }
+        { success: false, message: "All fields required" },
+        { status: 400, headers: cors }
       );
     }
 
@@ -24,36 +33,16 @@ export async function POST(req: NextRequest) {
       website: siteId,
     });
 
-    console.log("Feedback received:", newFeedback);
-
     return NextResponse.json(
-      { success: true, data: newFeedback, message: "Feedback submitted successfully" },
-      {
-        status: 201,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "POST, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type",
-        },
-      }
+      { success: true, data: newFeedback },
+      { status: 201, headers: cors }
     );
   } catch (error) {
-    console.error("Error saving feedback:", error);
+    console.error("Feedback Error:", error);
+
     return NextResponse.json(
-      { success: false, message: "Server error" },
-      { status: 500 }
+      { success: false, message: "Internal server error" },
+      { status: 500, headers: cors }
     );
   }
-}
-
-// Handle preflight OPTIONS requests
-export async function OPTIONS() {
-  return new NextResponse(null, {
-    status: 204,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
-    },
-  });
 }

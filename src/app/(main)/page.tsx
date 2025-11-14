@@ -111,27 +111,6 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-20 pt-12 border-t border-border">
-          <p className="text-sm text-muted-foreground mb-6">
-            Trusted by companies worldwide
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
-            {[
-              "TechCorp",
-              "StartupHub",
-              "DataFlow",
-              "CloudSync",
-              "VisionAI",
-            ].map((company) => (
-              <div
-                key={company}
-                className="text-sm font-semibold text-muted-foreground"
-              >
-                {company}
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       <section id="features" className="max-w-7xl mx-auto px-6 py-20 md:py-32">

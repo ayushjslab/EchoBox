@@ -85,7 +85,7 @@ export default function ButtonCustomization({websiteId}: {websiteId: string}) {
       }
     };
     fetchStyles();
-  }, []);
+  }, [websiteId]);
 
   return (
     <div className="flex justify-center flex-wrap gap-6 p-6">

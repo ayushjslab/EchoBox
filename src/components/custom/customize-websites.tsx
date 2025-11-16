@@ -45,7 +45,7 @@ const CustomizeWebsites = () => {
     );
 
   return (
-    <div className="mt-10 border border-emerald-200/40 bg-gradient-to-br from-white to-emerald-50/30 shadow-xl rounded-3xl p-10 backdrop-blur-lg">
+    <div className="mt-10 border border-emerald-200/40 bg-linear-to-br from-white to-emerald-50/30 shadow-xl rounded-3xl p-10 backdrop-blur-lg">
       {/* Header */}
       <div className="flex items-center justify-between mb-10">
         <div className="flex items-center gap-3">

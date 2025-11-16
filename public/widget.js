@@ -56,16 +56,23 @@ function showToast(message, type = "info") {
 }
 
   async function initWidget() {
-    var currentScript = document.currentScript;
-    var siteId = currentScript
-      ? new URL(currentScript.src).searchParams.get("siteId")
-      : null;
+   var siteId = null;
 
-      console.log(siteId)
-    if (!siteId) {
-      console.error("Site ID is missing in widget script.");
-      return;
-    }
+   if (document.currentScript) {
+     siteId = new URL(document.currentScript.src).searchParams.get("siteId");
+   }
+
+   if (!siteId && window.WIDGET_SITE_ID) {
+     siteId = window.WIDGET_SITE_ID;
+   }
+
+   console.log(siteId);
+
+   if (!siteId) {
+     console.error("Site ID is missing in widget script.");
+     return;
+   }
+
 
     try {
       const res = await fetch(`https://echomark.vercel.app/api/validate-site`, {

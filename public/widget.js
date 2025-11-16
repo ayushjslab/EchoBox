@@ -61,6 +61,7 @@ function showToast(message, type = "info") {
       ? new URL(currentScript.src).searchParams.get("siteId")
       : null;
 
+      console.log(siteId)
     if (!siteId) {
       console.error("Site ID is missing in widget script.");
       return;

@@ -18,6 +18,7 @@ import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { SiThreads } from "react-icons/si";
 import { HiOutlineGlobeAlt } from "react-icons/hi2";
+import InstallTabs from "@/components/custom/install-command";
 
 export default function Home() {
   const router = useRouter();
@@ -28,7 +29,11 @@ export default function Home() {
       <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="text-2xl font-bold text-primary flex items-center gap-2">
-            <img src="/images/logo.png" alt="echomark-logo" className="h-12 hidden sm:block" />
+            <img
+              src="/images/logo.png"
+              alt="echomark-logo"
+              className="h-12 hidden sm:block"
+            />
             EchoMark
           </div>
           <div className="hidden md:flex gap-8">
@@ -65,7 +70,6 @@ export default function Home() {
           </div>
         </div>
       </nav>
-
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
@@ -110,9 +114,7 @@ export default function Home() {
             />
           </div>
         </div>
-
       </section>
-
       <section id="features" className="max-w-7xl mx-auto px-6 py-20 md:py-32">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -179,11 +181,23 @@ export default function Home() {
           })}
         </div>
       </section>
+      <section className="flex flex-col md:flex-row items-start md:items-center justify-around p-6 mt-10 bg-emerald-50/60 rounded-3xl border border-emerald-200 shadow-md lg:mx-20 md:mx-15 mx-10">
+        <div className="max-w-md w-full">
+          <h1 className="text-3xl font-bold text-emerald-800 mb-3">
+            Install the Package
+          </h1>
+          <p className="text-emerald-700 leading-relaxed">
+            Customize everything according to your needs and take full control
+            in your hands. EchoMark makes integration smooth, flexible, and
+            developer-friendly.
+          </p>
+        </div>
 
+        <InstallTabs />
+      </section>
       <section id="watch-demo">
         <HowItWorks />
       </section>
-
       <section
         id="how-it-works"
         className="max-w-7xl mx-auto px-6 py-20 md:py-32"
@@ -229,8 +243,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </section>
-
+      </section>{" "}
       <section id="pricing" className="max-w-7xl mx-auto px-6 py-20 md:py-32">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -321,7 +334,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
       <section className="max-w-7xl mx-auto px-6 py-20 md:py-32">
         <div className="bg-linear-to-r from-primary/10 to-accent/10 border border-border rounded-2xl p-12 md:p-16 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -340,7 +352,6 @@ export default function Home() {
           </Button>
         </div>
       </section>
-
       <footer className="border-t border-border/60 py-20 mt-28 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           {/* TOP SECTION */}
@@ -376,7 +387,10 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="#watch-demo" className="hover:text-primary transition">
+                  <a
+                    href="#watch-demo"
+                    className="hover:text-primary transition"
+                  >
                     Documentation
                   </a>
                 </li>

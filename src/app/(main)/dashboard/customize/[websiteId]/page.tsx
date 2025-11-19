@@ -11,7 +11,6 @@ const CustomizePage = () => {
   return (
     <div className="p-6 ml-22">
       <Tabs defaultValue="form" className="w-full">
-        {/* Tab Buttons */}
         <TabsList className="w-full flex gap-2">
           <TabsTrigger value="form" className="flex-1">
             Form Customization
@@ -21,12 +20,10 @@ const CustomizePage = () => {
           </TabsTrigger>
         </TabsList>
 
-        {/* Form Customizer */}
         <TabsContent value="form" className="mt-6">
           <FeedbackCustomizer websiteId={websiteId as string} />
         </TabsContent>
 
-        {/* Button Customizer */}
         <TabsContent value="button" className="mt-6">
           <ButtonCustomization websiteId={websiteId as string} />
         </TabsContent>
